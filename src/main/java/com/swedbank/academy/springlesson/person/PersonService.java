@@ -10,5 +10,9 @@ public interface PersonService {
 
     void delete(long pid);
 
+    boolean save(Person person);
+
+    public boolean update(Person person) throws PersonNotFoundException;
+
 }
 
