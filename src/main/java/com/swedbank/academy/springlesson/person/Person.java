@@ -1,14 +1,16 @@
 package com.swedbank.academy.springlesson.person;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.swedbank.academy.springlesson.group.Group;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
 @Data
@@ -36,4 +38,11 @@ public class Person {
     private String email;
 
     private String phone;
+
+    @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST }, fetch = FetchType.EAGER)
+    @JoinTable(name = "person_group", joinColumns = @JoinColumn(name = "pid", referencedColumnName = "pid"), inverseJoinColumns = @JoinColumn(name = "group_id", referencedColumnName = "id"))
+    @ToString.Exclude
+    @JsonIgnore
+    @EqualsAndHashCode.Exclude
+    private Set<Group> groups;
 }

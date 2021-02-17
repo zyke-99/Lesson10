@@ -61,4 +61,10 @@ public class PersonServiceImpl implements PersonService{
         return doneUpdate;
     }
 
+    @Override
+    public void saveAndFlush(Person person) {
+        personRepository.saveAndFlush(person);
+
+    }
+
 }

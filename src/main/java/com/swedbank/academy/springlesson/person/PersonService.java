@@ -14,5 +14,7 @@ public interface PersonService {
 
     public boolean update(Person person) throws PersonNotFoundException;
 
+    public void saveAndFlush(Person person);
+
 }
 
